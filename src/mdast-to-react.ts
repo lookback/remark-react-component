@@ -23,12 +23,13 @@ const createReactElement: CreateElement | undefined = (() => {
 export interface Props {
     text: string | null;
     className?: string;
+    wrapIn?: string;
+    /** Transforms the MDAST tree. */
+    transformers?: ((node: Node) => void)[];
 }
 
 export interface Options {
     sanitizeSchema?: any;
-    /** Transforms the MDAST tree. */
-    transformers?: ((node: Node) => void)[];
     createElement?: CreateElement;
     components?: {
         [key: string]: React.ComponentType;
@@ -60,7 +61,6 @@ export const mdastToReact = (
         components = {},
         createElement = createReactElement,
         sanitizeSchema = defaultSanitizeSchema,
-        transformers,
     } = options;
 
     if (!createElement) {
@@ -73,7 +73,7 @@ export const mdastToReact = (
         createElement(components[name] || name, ...rest);
 
     return (props: Props) => {
-        const { text, ...rest } = props;
+        const { text, transformers, wrapIn, ...rest } = props;
 
         if (!text) {
             return null;
@@ -98,8 +98,8 @@ export const mdastToReact = (
 
         const root = toH(h, sanitize(tree, sanitizeSchema));
 
-        if (props.className) {
-            return createElement('div', rest, root);
+        if (props.className || wrapIn) {
+            return createElement(wrapIn || 'div', rest, root);
         }
 
         return root;

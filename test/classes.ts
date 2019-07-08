@@ -39,16 +39,38 @@ test('support top-level class name on component', () => {
     });
 });
 
+test('support wrapper element', () => {
+    const pipe = unified().use(markdown);
+
+    const Component = createComponentFromProcessor(pipe);
+
+    const render = TestRenderer.create(
+        Component({ text: 'Hej 😄', wrapIn: 'section' })!
+    );
+
+    assert.deepStrictEqual(render.toJSON(), {
+        type: 'section',
+        props: {},
+        children: [
+            {
+                type: 'p',
+                props: {},
+                children: ['Hej 😄'],
+            },
+        ],
+    });
+});
+
 test('support emoji classes through a transformer', () => {
     const pipe = unified()
         .use(markdown)
         .use(emojis);
 
-    const Component = createComponentFromProcessor(pipe, {
-        transformers: [addEmojiClasses()],
-    });
+    const Component = createComponentFromProcessor(pipe);
 
-    const render = TestRenderer.create(Component({ text: 'Hej 😄' })!);
+    const render = TestRenderer.create(
+        Component({ text: 'Hej 😄', transformers: [addEmojiClasses()] })!
+    );
 
     assert.deepStrictEqual(render.toJSON(), {
         type: 'p',
@@ -69,17 +91,16 @@ test('support "large" emoji class names when there are only emojis', () => {
         .use(markdown)
         .use(emojis);
 
-    const Component = createComponentFromProcessor(pipe, {
-        transformers: [
-            addEmojiClasses({
-                classNameForOnlyEmojis: 'emoji-large',
-            }),
-        ],
-    });
+    const Component = createComponentFromProcessor(pipe);
 
     const render = TestRenderer.create(
         Component({
             text: '😄',
+            transformers: [
+                addEmojiClasses({
+                    classNameForOnlyEmojis: 'emoji-large',
+                }),
+            ],
         })!
     );
 

@@ -59,7 +59,9 @@ function createComponentFromProcessor(
 
 interface Props {
     text: string | null;
+    wrapIn?: string;
     className?: string;
+    transformers?: ((node: Node) => void)[];
 }
 
 interface Options {
@@ -68,7 +70,6 @@ interface Options {
         [key: string]: React.ComponentType;
     };
     sanitizeSchema?: any;
-    transformers?: ((node: Node) => void)[];
 }
 ```
 
@@ -105,7 +106,21 @@ An object passed directly to the [`sanitize`](https://github.com/syntax-tree/has
 
 Defaults to [GitHub's schema](https://github.com/syntax-tree/hast-util-sanitize/blob/master/lib/github.json).
 
-#### `options.transformers?: Transformer[]`
+### Props of the returned component
+
+### `props.text: string`
+
+Required. The text to parse.
+
+### `props.wrapIn?: string`
+
+If specified, we'll wrap the parsed Markdown in this element.
+
+### `props.className?: string`
+
+If specified, we'll add this class to a wrapper `div` around the parsed Markdown.
+
+### `props.transformers?: Transformer[]`
 
 An optional array of *Transformers* on the parsed MDAST. Use this to walk the AST and modify it. See `src/transformers/emoji-transformer.ts` for an example. You can use the [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit) to traverse the tree.
 
