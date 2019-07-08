@@ -14,7 +14,7 @@ Supports:
 ## Install
 
 ```bash
-npm install lookback/react-remark
+npm install --save github:lookback/remark-react-component
 ```
 
 ## Usage
@@ -22,8 +22,8 @@ npm install lookback/react-remark
 ```jsx
 import unified from 'unified';
 import markdown from 'remark-parse';
-import { createComponentFromProcessor } from 'react-remark';
-import { emojis } from 'react-remark/emojis';
+import { createComponentFromProcessor } from 'remark-react-component';
+import { emojis } from 'remark-react-component/emojis';
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -51,7 +51,7 @@ Factory function for creating a React component from a processor.
 
 ```ts
 import { Node } from 'unist';
-import { createComponentFromProcessor } from 'react-remark';
+import { createComponentFromProcessor } from 'remark-react-component';
 
 function createComponentFromProcessor(
   processor: unified.Processor,
@@ -120,7 +120,7 @@ We don't provide emoji support as default, since we wanna keep the default bundl
 ```js
 import unified from 'unified';
 import markdown from 'remark-parse';
-import { emojis, addEmojiClasses } from 'react-remark/emojis';
+import { emojis, addEmojiClasses } from 'remark-react-component/emojis';
 
 const processor = unified()
   .use(markdown)
@@ -139,7 +139,7 @@ const MyMarkdownComponent = createComponentFromProcessor(processor, {
 Adds support for finding emojis from text. Essentially a tokenizer plugin for Unified.
 
 ```ts
-import { emojis } from 'react-remark/emojis';
+import { emojis } from 'remark-react-component/emojis';
 
 function emojis(options?: TokenizerOptions): void;
 ```
@@ -168,7 +168,7 @@ Adds appropriate class names to the parsed emojis. It's essentially a transforme
 
 ```ts
 import { Node } from 'unist';
-import { addEmojiClasses } from 'react-remark/emojis';
+import { addEmojiClasses } from 'remark-react-component/emojis';
 
 function addEmojiClasses(options?: Options): (tree: Node) => void;
 

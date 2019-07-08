@@ -1,5 +1,5 @@
 {
-  "name": "react-remark",
+  "name": "remark-react-component",
   "version": "0.0.1",
   "description": "Render output from Remark as a React component.",
   "main": "build/cjs/index.js",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lookback/remark-react.git"
+    "url": "git+https://github.com/lookback/remark-react-component.git"
   },
   "bugs": {
-    "url": "https://github.com/lookback/remark-react/issues"
+    "url": "https://github.com/lookback/remark-react-component/issues"
   },
   "keywords": [
     "react",
