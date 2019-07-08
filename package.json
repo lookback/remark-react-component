@@ -2,9 +2,9 @@
   "name": "remark-react-component",
   "version": "0.0.1",
   "description": "Render output from Remark as a React component.",
-  "main": "build/cjs/index.js",
+  "main": "build/index.js",
   "module": "build/es6/index.js",
-  "types": "build/cjs/index.d.ts",
+  "types": "build/index.d.ts",
   "scripts": {
     "lint": "tslint --project .",
     "pretest": "npm run lint",
