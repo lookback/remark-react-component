@@ -5,11 +5,12 @@ declare type CreateElement = (tag: any, props?: any, children?: any) => any;
 export interface Props {
     text: string | null;
     className?: string;
+    wrapIn?: string;
+    /** Transforms the MDAST tree. */
+    transformers?: ((node: Node) => void)[];
 }
 export interface Options {
     sanitizeSchema?: any;
-    /** Transforms the MDAST tree. */
-    transformers?: ((node: Node) => void)[];
     createElement?: CreateElement;
     components?: {
         [key: string]: React.ComponentType;

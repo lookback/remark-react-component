@@ -9,7 +9,7 @@
     "lint": "tslint --project .",
     "pretest": "npm run lint",
     "build": "npm run build-cjs && npm run build-es6",
-    "build-cjs": "tsc --module commonjs --outDir build/cjs",
+    "build-cjs": "tsc --module commonjs",
     "build-es6": "tsc --module es6 --outDir build/es6",
     "watch": "tsc -w",
     "test": "loltest"

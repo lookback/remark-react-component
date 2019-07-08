@@ -43,6 +43,16 @@ const App = () => {
 render(<App />, document.getElementbyId('app'));
 ```
 
+### ES6
+
+We provide an ES6 style build in the `es6` sub-directory:
+
+```js
+import { createComponentFromProcessor } from 'remark-react-component/build/es6';
+
+// Do stuff..
+```
+
 ## API
 
 ### `createComponentFromProcessor`
