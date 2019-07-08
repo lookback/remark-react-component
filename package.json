@@ -1,0 +1,56 @@
+{
+  "name": "react-remark",
+  "version": "0.0.1",
+  "description": "Render output from Remark as a React component.",
+  "main": "build/cjs/index.js",
+  "module": "build/es6/index.js",
+  "types": "build/cjs/index.d.ts",
+  "scripts": {
+    "lint": "tslint --project .",
+    "pretest": "npm run lint",
+    "build": "npm run build-cjs && npm run build-es6",
+    "build-cjs": "tsc --module commonjs --outDir build/cjs",
+    "build-es6": "tsc --module es6 --outDir build/es6",
+    "watch": "tsc -w",
+    "test": "loltest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lookback/remark-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lookback/remark-react/issues"
+  },
+  "keywords": [
+    "react",
+    "remark",
+    "markdown",
+    "emojis",
+    "jsx"
+  ],
+  "author": "Johan Brook <johan@lookback.io>",
+  "license": "MIT",
+  "dependencies": {
+    "deepmerge": "^3.3.0",
+    "emoji-regex": "^8.0.0",
+    "gemoji": "^4.2.1",
+    "hast-to-hyperscript": "^7.0.2",
+    "hast-util-sanitize": "^2.0.0",
+    "mdast-util-to-hast": "^6.0.1",
+    "unist-util-visit": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.12",
+    "@types/react": "^16.8.10",
+    "@types/react-test-renderer": "^16.8.2",
+    "hyperscript": "^2.0.2",
+    "loltest": "github:lookback/loltest#1.1.2",
+    "react": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "remark-parse": "^6.0.3",
+    "tslint": "^5.18.0",
+    "tslint-immutable": "^6.0.1",
+    "typescript": "^3.5.2",
+    "unified": "^8.0.1"
+  }
+}
